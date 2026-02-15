@@ -103,6 +103,13 @@ export const initDB = async () => {
     } catch (migrationErr) {
       console.warn('[DB] watch_history migration error:', migrationErr);
     }
+    // Seed free local TV from iptv-org index (Jamaica)
+    try {
+      await syncFreeTvFromIptvOrg();
+      console.log('[DB] syncFreeTvFromIptvOrg completed');
+    } catch (e) {
+      console.warn('[DB] syncFreeTvFromIptvOrg error:', e);
+    }
   } catch (e) {
     console.warn('[DB] initDB:', e);
   }
@@ -416,6 +423,64 @@ export const syncRadio = async () => {
     await stmt.finalizeAsync();
   } catch (e) {
     console.warn('[DB] syncRadio:', e);
+  }
+};
+
+/**
+ * Fetch iptv-org master playlist and seed Jamaica free-local channels.
+ * This attempts to find entries that reference Jamaica or JM in their metadata or title.
+ */
+export const syncFreeTvFromIptvOrg = async () => {
+  try {
+    const db = await getDBConnection();
+    if (!db) return;
+    const existing = await db.getAllAsync("SELECT 1 FROM channels WHERE category_id = 'free_local' LIMIT 1");
+    if (existing?.length > 0) return;
+
+    // Fetch master playlist from iptv-org and parse entries
+    const m3uUrl = 'https://iptv-org.github.io/iptv/index.m3u';
+    let text = '';
+    try {
+      const res = await api.get(m3uUrl, { responseType: 'text' });
+      text = res.data || '';
+    } catch (e) {
+      console.warn('[syncFreeTvFromIptvOrg] fetch failed:', e?.message || e);
+      return;
+    }
+
+    const lines = (text || '').split(/\r?\n/);
+    const entries = [];
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+      if (line.startsWith('#EXTINF')) {
+        const info = line;
+        const nameMatch = info.indexOf(',') >= 0 ? info.slice(info.indexOf(',') + 1).trim() : info;
+        const nextUrl = (lines[i + 1] || '').trim();
+        // Heuristic: match Jamaica mentions in info attributes or name
+        const infoLower = info.toLowerCase();
+        const nameLower = String(nameMatch).toLowerCase();
+        if (infoLower.includes('jamaica') || infoLower.includes('jm') || nameLower.includes('jamaica') || nameLower.includes('tvj') || nameLower.includes('cvm')) {
+          entries.push({ name: nameMatch || nextUrl, url: nextUrl, raw: info });
+        }
+      }
+    }
+
+    if (entries.length === 0) {
+      console.log('[syncFreeTvFromIptvOrg] No Jamaica entries found in iptv-org index.m3u');
+      return;
+    }
+
+    const stmt = await db.prepareAsync("INSERT INTO channels (stream_id, name, stream_icon, category_id, stream_type) VALUES ($id, $name, $icon, $cat, 'live')");
+    let idBase = Date.now() % 100000;
+    for (const e of entries) {
+      const sid = 30000 + (idBase++);
+      await stmt.executeAsync({ $id: sid, $name: e.name || `Free TV ${sid}`, $icon: null, $cat: 'free_local' });
+    }
+    await stmt.finalizeAsync();
+    console.log(`[syncFreeTvFromIptvOrg] Seeded ${entries.length} free_local channels`);
+  } catch (e) {
+    console.warn('[syncFreeTvFromIptvOrg] error:', e);
   }
 };
 
