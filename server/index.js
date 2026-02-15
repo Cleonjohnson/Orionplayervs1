@@ -108,7 +108,7 @@ app.post('/create-checkout-session', async (req, res) => {
 });
 
 // Simple webhook receiver that creates a license code when checkout completes.
-app.post('/webhook', bodyParser.raw({ type: 'application/json' }), (req, res) => {
+app.post('/webhook', bodyParser.raw({ type: 'application/json' }), async (req, res) => {
   const event = req.body && JSON.parse(req.body.toString());
   try {
     if (event?.type === 'checkout.session.completed') {
@@ -228,7 +228,7 @@ app.get('/gumroad-product', (req, res) => {
 });
 
 // Gumroad webhook receiver (Gumroad may POST form-encoded data with a 'payload' field)
-app.post('/gumroad-webhook', bodyParser.urlencoded({ extended: true }), (req, res) => {
+app.post('/gumroad-webhook', bodyParser.urlencoded({ extended: true }), async (req, res) => {
   try {
     let payload = req.body;
     if (payload.payload) {
