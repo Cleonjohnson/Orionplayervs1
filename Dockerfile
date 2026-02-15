@@ -1,9 +1,13 @@
-FROM node:18-alpine
-WORKDIR /usr/src/app
-COPY server/package.json server/package-lock.json* ./server/
-RUN apk add --no-cache git curl build-base python3 && cd server && npm install --production
-COPY server ./server
+FROM node:18
+
+# Install dependencies in a clean layer using package-lock for reproducible installs
 WORKDIR /usr/src/app/server
+COPY server/package*.json ./
+RUN npm ci --only=production
+
+# Copy the rest of the server files
+COPY server/ ./
+
 EXPOSE 4242
 ENV PORT=4242
 CMD ["node", "index.js"]
