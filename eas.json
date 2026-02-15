@@ -1,0 +1,61 @@
+{
+  "cli": {
+    "version": ">= 16.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "channel": "development",
+      "env": {
+        "SENTRY_ORG": "your-sentry-organization-slug",
+        "SENTRY_PROJECT": "your-sentry-project-slug"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "channel": "preview",
+      "env": {
+        "SENTRY_ORG": "your-sentry-organization-slug",
+        "SENTRY_PROJECT": "your-sentry-project-slug"
+      }
+    },
+    "production": {
+      "android": { "buildType": "apk" },
+      "channel": "production",
+      "env": {
+        "SENTRY_ORG": "your-sentry-organization-slug",
+        "SENTRY_PROJECT": "your-sentry-project-slug"
+      }
+    },
+    "universal": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
+      },
+      "channel": "universal",
+      "env": {
+        "SENTRY_ORG": "your-sentry-organization-slug",
+        "SENTRY_PROJECT": "your-sentry-project-slug"
+      }
+    },
+    "firestick": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
+      },
+      "channel": "firestick",
+      "env": {
+        "SENTRY_ORG": "your-sentry-organization-slug",
+        "SENTRY_PROJECT": "your-sentry-project-slug"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

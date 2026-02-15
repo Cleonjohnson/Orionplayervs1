@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Orion Purchase Success</title>
+    <style>
+      body { font-family: Arial, Helvetica, sans-serif; background:#0f0f0f; color:#fff; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
+      .box { max-width:680px; padding:28px; background:#111; border-radius:10px; text-align:center; border:1px solid rgba(255,215,0,0.12); }
+      .code { font-size:22px; color:#FFD700; font-weight:700; margin-top:18px; }
+      .hint { color:#aaa; margin-top:12px; }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>Thank you for your purchase</h1>
+      <p id="status">Checking your license code…</p>
+      <div id="code" class="code" style="display:none"></div>
+      <p class="hint">If your code does not appear here, check your email for the license code and enter it in the app under Settings → Redeem.</p>
+    </div>
+    <script>
+      (function(){
+        function q(name){ const u = new URL(location.href); return u.searchParams.get(name); }
+        const sid = q('session_id') || q('session') || '';
+        const statusEl = document.getElementById('status');
+        const codeEl = document.getElementById('code');
+        if (!sid) {
+          statusEl.textContent = 'Missing session id.';
+          return;
+        }
+        const poll = async () => {
+          try {
+            const res = await fetch(`/session/${encodeURIComponent(sid)}`);
+            const j = await res.json();
+            if (j.ready && j.code) {
+              statusEl.style.display = 'none';
+              codeEl.textContent = j.code;
+              codeEl.style.display = 'block';
+              return;
+            }
+          } catch (e) {}
+          setTimeout(poll, 2000);
+        };
+        poll();
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,64 @@
+{
+  "expo": {
+    "name": "Orion Entertainment Hub",
+    "slug": "OrionPlayer2",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/images/OrionLogo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0f0f0f"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": ["audio", "fetch"]
+      }
+    },
+    "android": {
+      "package": "com.orion.entertainmenthub",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0f0f0f"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "ACCESS_WIFI_STATE",
+        "FOREGROUND_SERVICE",
+        "WAKE_LOCK"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-updates",
+      "expo-sqlite",
+      "expo-secure-store",
+      ["expo-screen-orientation", { "initialOrientation": "DEFAULT" }],
+      "expo-video",
+      ["expo-build-properties", { "android": { "usesCleartextTraffic": true, "minSdkVersion": 21 } }],
+      "@sentry/react-native"
+    ],
+    "updates": {
+      "url": "https://u.expo.dev/255d3bd5-7db0-4cd6-9804-8a7228ee72fc",
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "255d3bd5-7db0-4cd6-9804-8a7228ee72fc"
+      }
+    },
+    "owner": "cleonjohnson"
+  }
+}

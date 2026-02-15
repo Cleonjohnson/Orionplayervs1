@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: orionplayer2-server
+    env: docker
+    dockerfilePath: ./Dockerfile
+    branch: main
+    plan: free
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: STRIPE_SECRET_KEY
+        fromEnvironment: STRIPE_SECRET_KEY
+      - key: SENDGRID_API_KEY
+        fromEnvironment: SENDGRID_API_KEY
+      - key: SENDGRID_FROM
+        fromEnvironment: SENDGRID_FROM
+      - key: BASE_URL
+        fromEnvironment: BASE_URL
+      - key: GA_MEASUREMENT_ID
+        fromEnvironment: GA_MEASUREMENT_ID
+      - key: GA_API_SECRET
+        fromEnvironment: GA_API_SECRET
+

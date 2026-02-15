@@ -1,0 +1,1280 @@
+/**
+ * GameHub - Master Game Data (The Content Engine)
+ * Hilarious Jamaican content for Charades + Immigration scenarios.
+ * Visa facts from Jamaica PICA (Passport, Immigration and Citizenship Agency).
+ */
+
+// ----- JAMAICA VISA FACTS (PICA - who needs visa TO ENTER Jamaica) -----
+// Source: pica.gov.jm/immigration/entry-visa-requirements (official)
+
+/** Countries that do NOT need a visa to enter Jamaica (tourists / common) */
+export const VISA_FREE_FOR_JAMAICA = [
+  'United States',
+  'Canada',
+  'United Kingdom',
+  'Australia',
+  'Germany',
+  'France',
+  'Italy',
+  'Spain',
+  'Netherlands',
+  'Belgium',
+  'Switzerland',
+  'Austria',
+  'Japan',
+  'South Korea',
+  'China (tourism 30 days)',
+  'Brazil (90 days)',
+  'Argentina (30 days)',
+  'Chile (90 days)',
+  'Mexico (90 days)',
+  'Colombia (30 days)',
+  'Costa Rica (30 days)',
+  'Israel (90 days)',
+  'Russia (90 days)',
+  'Turkey (90 days)',
+  'India',
+  'South Africa',
+  'Kenya',
+  'Ghana',
+  'Trinidad & Tobago',
+  'Barbados',
+  'Bahamas',
+  'Belize',
+  'Guyana',
+  'Dominica',
+  'Grenada',
+  'St. Lucia',
+  'St. Vincent & Grenadines',
+  'Antigua & Barbuda',
+  'Jamaica (citizens)',
+];
+
+/** Countries that REQUIRE a visa before arrival to enter Jamaica */
+export const VISA_REQUIRED_FOR_JAMAICA = [
+  'Afghanistan',
+  'Algeria',
+  'Angola',
+  'Bahrain',
+  'Benin',
+  'Bhutan',
+  'Burkina Faso',
+  'Burundi',
+  'Cambodia',
+  'Cameroon',
+  'Cuba',
+  'Egypt',
+  'Ethiopia',
+  'Haiti (ordinary passport)',
+  'Indonesia',
+  'Iran',
+  'Iraq',
+  'Jordan',
+  'Kuwait',
+  'Lebanon',
+  'Liberia',
+  'Libya',
+  'Madagascar',
+  'Mali',
+  'Morocco',
+  'Myanmar',
+  'Nepal',
+  'Nicaragua',
+  'Nigeria',
+  'Pakistan',
+  'Philippines',
+  'Qatar',
+  'Rwanda',
+  'Saudi Arabia',
+  'Somalia',
+  'Sri Lanka',
+  'Sudan',
+  'Syria',
+  'Thailand',
+  'Tunisia',
+  'Vietnam',
+  'Yemen',
+  'Zimbabwe',
+];
+
+/** Short fact string for in-game display */
+export const VISA_FACTS = {
+  summary: 'Visa-free: USA, UK, Canada, CARICOM, most EU, Japan, Brazil, etc. Visa required: Cuba, Nigeria, Pakistan, Afghanistan, Egypt, Haiti (ordinary), and 40+ others. Check PICA.gov.jm for full list.',
+  source: 'PICA Jamaica (pica.gov.jm). Last updated July 2023.',
+};
+
+// ----- CHARADES -----
+export const CHARADES_PACKS = [
+  {
+    id: 'pickney',
+    name: 'Pickney Ting',
+    subtitle: 'Kids / Family',
+    color: '#4CAF50',
+    requiresAgeGate: false,
+    words: [
+      'Bag Juice',
+      'Duppy',
+      'KFC',
+      'Police',
+      'Mongrel Dog',
+      'Patty',
+      'School Bus',
+      'Goat',
+      'Doctor Bird',
+      'Usain Bolt',
+      'Mango',
+      'Dumpling',
+      'Chicken Back',
+      'Breadfruit',
+      'Ackee',
+      'Coconut',
+      'Donkey',
+      'Lizard',
+      'Rain',
+      'Beach',
+      'Grandma',
+      'Ice Cream',
+      'Bicycle',
+      'Church',
+      'Market',
+      'Bun',
+      'Callaloo',
+      'Soursop',
+      'Guava',
+      'Pimento',
+      'Pepper',
+      'Cricket',
+      'Swimming',
+      'Basketball',
+      'Soccer',
+      'Parrot',
+      'Pelican',
+      'Sunset',
+      'Hurricane',
+      'Christmas',
+      'Easter',
+      'Birthday',
+      'Doctor',
+      'Nurse',
+      'Fire Truck',
+      'Ambulance',
+      'Duppy Story',
+      'Crab Dance',
+      'Watermelon',
+      'Banana',
+      'Pineapple',
+      'Sugar Cake',
+      'Sky Juice',
+      'Ting',
+      'Granny',
+      'Uncle',
+      'Cousin',
+      'Puppy',
+      'Pig',
+      'Rooster',
+      'Chicken',
+      'Fish',
+      'Boat',
+      'Plane',
+      'Train',
+    ],
+  },
+  {
+    id: 'yardie',
+    name: 'Yardie Vibes',
+    subtitle: 'General',
+    color: '#FFC107',
+    requiresAgeGate: false,
+    words: [
+      'Box Food',
+      'Bad Drive',
+      'Handcart Man',
+      'Grimy',
+      'Digicel Credit',
+      'Power Cut',
+      'Half Way Tree',
+      'Oxtail',
+      'Taxi Man',
+      'Dancehall Queen',
+      'Portmore',
+      'Route Taxi',
+      'Bend Down Plaza',
+      'Lime',
+      'Vibes',
+      'Brawta',
+      'Wah Gwaan',
+      'No Problem',
+      'Mi Deh Yah',
+      'Cho',
+      'Rasta',
+      'Nyam',
+      'Bumbo Claat',
+      'Fish Tea',
+      'Jerk Chicken',
+      'Red Stripe',
+      'Curry Goat',
+      'Run Down',
+      'Buss a U',
+      'Criss',
+      'Boonoonoonoos',
+      'Trelawny',
+      'Negril',
+      'Blue Mountain',
+      'Traffic Jam',
+      'JPS Truck',
+      'Bolt Win',
+      'Shelly-Ann',
+      'Bounty Killer',
+      'Beenie Man',
+      'Spice',
+      'Skeng',
+      'Gaza',
+      'Gully',
+      'Clarks',
+      'Desert Boot',
+      'Browning',
+      'Belly Full',
+      'Respect',
+      'Bless Up',
+      'Big Up',
+      'Forward',
+      'Session',
+      'Sound Clash',
+      'Selector',
+      'Sky Juice',
+      'Ting',
+      'D&G',
+    ],
+  },
+  {
+    id: 'bigpeople',
+    name: 'Big People Ting',
+    subtitle: '18+ Adult',
+    color: '#D32F2F',
+    requiresAgeGate: true,
+    words: [
+      'Sneaking In',
+      'Joe Grind',
+      'Matey',
+      'Bruck Out',
+      'Daggering',
+      'Bedroom Bully',
+      'Good Body Gal',
+      'Wine',
+      'Bubble',
+      'Bumper',
+      'Link Up',
+      'Champion',
+      'Lovers Rock',
+      'One Drop',
+      'Wining',
+      'Bruk Off',
+      'Sweet Bump',
+      'Bumper to Bumper',
+      'Bubble and Wine',
+      'Back It Up',
+      'Whine Down',
+      'Bend Over',
+      'Grind Up',
+      'Tek Weh Yuhself',
+      'Bad Gyal',
+      'Good Good',
+      'Bruk Out',
+      'Daggering',
+      'Bedroom Bully',
+      'Champion Lover',
+      'One Night',
+      'Link Up Late',
+      'Midnight Lime',
+      'Private Session',
+      'Sweet Thing',
+      'Bumpa Grind',
+      'Wine and Kotch',
+      'Lovers Rock',
+      'Slow Wine',
+      'Bubble and Dip',
+      'Tek It Slow',
+      'Hot and Sweaty',
+      'Under Di Mango Tree',
+      'Moonlight Session',
+      'Sweet Melody',
+      'One Drop Rhythm',
+      'Rock Steady',
+      'Lovers Paradise',
+      'Midnight Creeper',
+      'Sweet Bumpa',
+      'Whine Fi Mi',
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Charades expansion (1000+ words, low repetition)
+// ---------------------------------------------------------------------------
+
+function uniqueWords(list) {
+  const out = [];
+  const seen = new Set();
+  for (const w of list || []) {
+    const s = typeof w === 'string' ? w.trim().replace(/\s+/g, ' ') : '';
+    if (!s) continue;
+    const key = s.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(s);
+  }
+  return out;
+}
+
+function buildWordBank({ nouns = [], adjs = [], verbs = [], places = [], people = [], extras = [], limit = 500 }) {
+  const set = new Set();
+  const add = (v) => {
+    const s = typeof v === 'string' ? v.trim().replace(/\s+/g, ' ') : '';
+    if (s) set.add(s);
+  };
+
+  extras.forEach(add);
+  nouns.forEach(add);
+  people.forEach(add);
+  places.forEach(add);
+
+  // Deterministic combinations (no randomness at module init)
+  for (const adj of adjs) {
+    for (const noun of nouns) {
+      add(`${adj} ${noun}`);
+      if (set.size >= limit) return [...set];
+    }
+  }
+  for (const verb of verbs) {
+    for (const noun of nouns) {
+      add(`${verb} ${noun}`);
+      if (set.size >= limit) return [...set];
+    }
+  }
+  for (const place of places) {
+    for (const noun of nouns.slice(0, 80)) {
+      add(`${place} ${noun}`);
+      if (set.size >= limit) return [...set];
+    }
+  }
+  for (const p of people) {
+    for (const noun of nouns.slice(0, 60)) {
+      add(`${p} ${noun}`);
+      if (set.size >= limit) return [...set];
+    }
+  }
+  return [...set];
+}
+
+const EXTRA_CHARADES = (() => {
+  const pickneyNouns = [
+    'Bag Juice', 'Patty', 'Dumpling', 'Ackee', 'Callaloo', 'Festival', 'Ice Cream',
+    'Goat', 'Donkey', 'Chicken', 'Rooster', 'Crab', 'Fish', 'Parrot', 'Pelican',
+    'School Bag', 'School Bus', 'Bicycle', 'Beach Ball', 'Kite', 'Marbles',
+    'Mango', 'Banana', 'Pineapple', 'Coconut', 'Soursop', 'Guava', 'Watermelon',
+    'Rain', 'Sunshine', 'Hurricane', 'Christmas', 'Easter', 'Birthday Cake',
+    'Doctor Bird', 'Fire Truck', 'Ambulance', 'Police', 'Market', 'Church',
+  ];
+  const pickneyAdjs = ['Little', 'Big', 'Funny', 'Fast', 'Slow', 'Happy', 'Sleepy', 'Sweet', 'Spicy', 'Sticky', 'Noisy', 'Quiet'];
+  const pickneyVerbs = ['Run', 'Jump', 'Swim', 'Dance', 'Sing', 'Laugh', 'Hide', 'Seek', 'Clap', 'Wave'];
+  const pickneyPlaces = ['Kingston', 'Portmore', 'Ochi', 'Negril', 'MoBay', 'Mandeville', 'Spanish Town', 'Half Way Tree', 'Market', 'Beach'];
+  const pickneyPeople = ['Grandma', 'Granny', 'Uncle', 'Auntie', 'Teacher', 'Doctor', 'Nurse', 'Pickney'];
+
+  const yardieNouns = [
+    'Box Food', 'Oxtail', 'Jerk Chicken', 'Curry Goat', 'Chicken Back', 'Fish Tea',
+    'Route Taxi', 'Robot Taxi', 'Taxi Man', 'Handcart', 'Bend Down Plaza', 'Half Way Tree',
+    'JPS Truck', 'Power Cut', 'Traffic Jam', 'Sound Clash', 'Selector', 'Dubplate',
+    'Desert Clarks', 'Clarks', 'Red Stripe', 'Wray & Nephew', 'Ting', 'Sky Juice',
+    'Lime', 'Vibes', 'Brawta', 'Respect', 'Bless Up', 'Big Up', 'Forward', 'Cho',
+    'Dancehall', 'Reggae', 'Studio', 'Mic', 'Speaker Box', 'Bass', 'Riddim',
+  ];
+  const yardieAdjs = ['Brawta', 'Criss', 'Grimy', 'Hot', 'Fresh', 'Legendary', 'Wicked', 'Serious', 'Lickle', 'Big', 'Nuff', 'Buss'];
+  const yardieVerbs = ['Link', 'Lime', 'Nyam', 'Skank', 'Buss', 'Forward', 'Big Up', 'Tune In', 'Roll Out', 'Mash Up'];
+  const yardiePlaces = ['Tivoli', 'Waterhouse', 'Downtown', 'Uptown', 'Portmore', 'Mobay', 'Ochi', 'Negril', 'Half Way Tree', 'Constant Spring'];
+  const yardiePeople = ['Taxi Man', 'Police', 'Rasta', 'Selector', 'DJ', 'Auntie', 'Uncle', 'Bredrin', 'Sista', 'Boss Man'];
+
+  const bigPeopleNouns = [
+    'Link Up', 'Private Session', 'Midnight Lime', 'Slow Wine', 'Hot Seat', 'Sweet Talk',
+    'Late Night Call', 'Secret Text', 'Quiet Corner', 'Back It Up', 'Bubble', 'Wine',
+    'One Night', 'After Party', 'Side Eye', 'Kotch', 'Kiss', 'Whine', 'Bruck Out',
+  ];
+  const bigPeopleAdjs = ['Secret', 'Late', 'Hot', 'Sweet', 'Quiet', 'Private', 'Wild', 'Risky', 'Smooth', 'Steamy'];
+  const bigPeopleVerbs = ['Link', 'Text', 'Call', 'Sneak', 'Whine', 'Kotch', 'Move', 'Slide', 'Vibe'];
+  const bigPeoplePlaces = ['Back Road', 'Corner Shop', 'Dancehall', 'Car Park', 'Beach', 'Balcony', 'Yard', 'Hotel', 'Pool Side'];
+  const bigPeoplePeople = ['Him', 'She', 'Matey', 'Crush', 'Ex', 'Boo'];
+
+  return {
+    pickney: buildWordBank({ nouns: pickneyNouns, adjs: pickneyAdjs, verbs: pickneyVerbs, places: pickneyPlaces, people: pickneyPeople, limit: 520 }),
+    yardie: buildWordBank({ nouns: yardieNouns, adjs: yardieAdjs, verbs: yardieVerbs, places: yardiePlaces, people: yardiePeople, limit: 620 }),
+    bigpeople: buildWordBank({ nouns: bigPeopleNouns, adjs: bigPeopleAdjs, verbs: bigPeopleVerbs, places: bigPeoplePlaces, people: bigPeoplePeople, limit: 420 }),
+  };
+})();
+
+// Mutate exported packs once to append the large word banks (keeps UI code unchanged).
+for (const pack of CHARADES_PACKS) {
+  if (!pack || !pack.id) continue;
+  if (pack.id === 'pickney') pack.words = uniqueWords([...(pack.words || []), ...EXTRA_CHARADES.pickney]);
+  if (pack.id === 'yardie') pack.words = uniqueWords([...(pack.words || []), ...EXTRA_CHARADES.yardie]);
+  if (pack.id === 'bigpeople') pack.words = uniqueWords([...(pack.words || []), ...EXTRA_CHARADES.bigpeople]);
+}
+
+// ----- BORDER CONTROL / IMMIGRATION -----
+// NOTE: Immigration-only scenarios (no baggage/customs). Jamaica Immigration and Customs are separate.
+export const IMMIGRATION_SCENARIOS = [
+  {
+    id: 'auntie_merle',
+    traveler: 'Auntie Merle',
+    nationality: 'USA',
+    purpose: 'Visit family',
+    stay: '2 weeks',
+    documents: 'Return ticket: No · Address: vague',
+    story: 'Mi just a come see di grandpickney dem… but mi nuh remember di address.',
+    isSuspicious: true,
+    reason: 'Visa-free nationality, yes—but no return ticket and no clear address. Secondary interview.',
+  },
+  {
+    id: 'jayden_florida',
+    traveler: 'Jayden from Florida',
+    nationality: 'USA',
+    purpose: 'Work / filming',
+    stay: '1 month',
+    documents: 'Return ticket: No · Work permit: No',
+    story: 'Mi a shoot a music video and link some producer. Mi just a “network”.',
+    isSuspicious: true,
+    reason: 'Tourists may enter visa-free, but “work/filming for a month” with no permit and no return ticket is a red flag. Secondary.',
+  },
+  {
+    id: 'mr_brown',
+    traveler: 'Mr. Brown',
+    nationality: 'United Kingdom',
+    purpose: 'Returning resident',
+    stay: 'Long-term',
+    documents: 'Passport: valid · Address: provided',
+    story: 'Too cold a England. Mi a come home fi good.',
+    isSuspicious: false,
+    reason: 'Returning resident with clear details. Admit.',
+  },
+  {
+    id: 'yuki_japan',
+    traveler: 'Yuki Tanaka',
+    nationality: 'Japan',
+    purpose: 'Honeymoon',
+    stay: '12 days',
+    documents: 'Return ticket: Yes · Hotel: Yes',
+    story: 'Honeymoon. Dunn’s River and Blue Mountain.',
+    isSuspicious: false,
+    reason: 'Clear itinerary + return ticket. Admit.',
+  },
+  {
+    id: 'carlos_cuba',
+    traveler: 'Carlos',
+    nationality: 'Cuba',
+    purpose: 'Tourism',
+    stay: '1 week',
+    documents: 'Visa: Missing',
+    story: 'Tourist. One week beach.',
+    isSuspicious: true,
+    reason: 'Cuba generally requires an entry visa before arrival. No visa shown → deny / secondary.',
+  },
+  {
+    id: 'daniel_nigeria',
+    traveler: 'Daniel Okonkwo',
+    nationality: 'Nigeria',
+    purpose: 'Wedding',
+    stay: '2 weeks',
+    documents: 'Visa: Missing',
+    story: 'Wedding. Mi cousin a Portmore.',
+    isSuspicious: true,
+    reason: 'Nigeria generally requires an entry visa. No visa shown → deny / secondary.',
+  },
+  {
+    id: 'pierre_haiti',
+    traveler: 'Pierre Jean',
+    nationality: 'Haiti',
+    purpose: 'Family emergency',
+    stay: '10 days',
+    documents: 'Visa: Missing (ordinary passport)',
+    story: 'Family emergency. Mi mudda sick.',
+    isSuspicious: true,
+    reason: 'Haiti ordinary passport typically needs a visa. No visa shown → deny / secondary.',
+  },
+  {
+    id: 'dr_smith',
+    traveler: 'Dr. Smith',
+    nationality: 'Germany',
+    purpose: 'Conference (UWI)',
+    stay: '3 days',
+    documents: 'Return ticket: Yes · Invitation: Yes',
+    story: 'Medical conference at UWI. Three days only.',
+    isSuspicious: false,
+    reason: 'Invitation + return ticket. Admit.',
+  },
+  {
+    id: 'maria_brazil',
+    traveler: 'Maria Silva',
+    nationality: 'Brazil',
+    purpose: 'Tourism',
+    stay: '2 months',
+    documents: 'Return ticket: Yes · Funds: limited',
+    story: 'Backpacking. Hostels. Mi have a ticket out.',
+    isSuspicious: true,
+    reason: 'Visa-free, but long stay with limited funds needs verification. Secondary.',
+  },
+  {
+    id: 'miss_kitty',
+    traveler: 'Miss Kitty',
+    nationality: 'Barbados',
+    purpose: 'Weekend visit',
+    stay: '3 days',
+    documents: 'Return ticket: Yes · Funds: Yes',
+    story: 'Weekend visit. Mi man deh a Ochi.',
+    isSuspicious: false,
+    reason: 'CARICOM + return ticket + short stay. Admit.',
+  },
+  {
+    id: 'one_way_ticket',
+    traveler: 'Tanya Williams',
+    nationality: 'Canada',
+    purpose: 'Tourism',
+    stay: '“Not sure”',
+    documents: 'Ticket: One-way · Funds: unclear',
+    story: 'Mi just come fi vibes. Mi see how it go.',
+    isSuspicious: true,
+    reason: 'One-way ticket with vague plans is a classic red flag. Secondary.',
+  },
+  {
+    id: 'crypto_nomad',
+    traveler: 'Crypto Kevin',
+    nationality: 'USA',
+    purpose: 'Remote work',
+    stay: '3 months',
+    documents: 'Return ticket: Maybe · Work permit: No',
+    story: 'Digital nomad. “Just working online”.',
+    isSuspicious: true,
+    reason: 'Long stay + remote work + unclear return plans. Secondary to clarify entry conditions.',
+  },
+  {
+    id: 'minimalist_finn',
+    traveler: 'Erik the Finn',
+    nationality: 'Finland',
+    purpose: 'Tourism',
+    stay: '2 weeks',
+    documents: 'Return ticket: Yes · Hotel: No',
+    story: 'Two weeks. Mi just “freestyle”.',
+    isSuspicious: true,
+    reason: 'Visa-free, but no accommodation details. Secondary.',
+  },
+  {
+    id: 'chef_italy',
+    traveler: 'Chef Giuseppe',
+    nationality: 'Italy',
+    purpose: 'Food festival guest',
+    stay: '7 days',
+    documents: 'Invitation: Yes · Return ticket: Yes',
+    story: 'Cooking demo at festival, then leave.',
+    isSuspicious: false,
+    reason: 'Clear itinerary and invitation. Admit.',
+  },
+  {
+    id: 'student_exchange',
+    traveler: 'Kim Min-ho',
+    nationality: 'South Korea',
+    purpose: 'Student exchange',
+    stay: '1 semester',
+    documents: 'Acceptance letter: Yes · Return: N/A',
+    story: 'Student exchange at UWI.',
+    isSuspicious: true,
+    reason: 'Long stay needs the right status/approval. Secondary to confirm documents.',
+  },
+  {
+    id: 'ahmed_egypt',
+    traveler: 'Ahmed',
+    nationality: 'Egypt',
+    purpose: 'Business meeting',
+    stay: '5 days',
+    documents: 'Visa: Missing · Invitation: unclear',
+    story: 'Business meeting in Kingston.',
+    isSuspicious: true,
+    reason: 'Visa required for some nationalities; no visa shown. Deny / secondary.',
+  },
+  {
+    id: 'sophie_france',
+    traveler: 'Sophie Laurent',
+    nationality: 'France',
+    purpose: 'Tourism',
+    stay: '2 weeks',
+    documents: 'Return ticket: Yes · Hotel: Yes',
+    story: 'Tourism and sightseeing. Two weeks.',
+    isSuspicious: false,
+    reason: 'Return ticket + accommodation. Admit.',
+  },
+  {
+    id: 'ali_pakistan',
+    traveler: 'Ali Hassan',
+    nationality: 'Pakistan',
+    purpose: 'Visit family',
+    stay: '3 weeks',
+    documents: 'Visa: Missing',
+    story: 'Visit mi brother in Spanish Town.',
+    isSuspicious: true,
+    reason: 'No visa shown where visa is required. Deny / secondary.',
+  },
+  {
+    id: 'olga_russia',
+    traveler: 'Olga Petrov',
+    nationality: 'Russia',
+    purpose: 'Cruise stop',
+    stay: '1 day',
+    documents: 'Cruise docs: Yes',
+    story: 'Cruise stop. One day only.',
+    isSuspicious: false,
+    reason: 'Short transit with documentation. Admit.',
+  },
+];
+
+// Add many more immigration scenarios so the game doesn't repeat quickly.
+(() => {
+  const firstNames = ['Andre', 'Keisha', 'Dwayne', 'Shanice', 'Tyrone', 'Marcia', 'Jerome', 'Patrice', 'Omar', 'Aaliyah', 'Sanjay', 'Fatima', 'Yuki', 'Carlos', 'Sophie', 'Raj', 'Ahmed', 'Olga', 'Maria', 'Chen'];
+  const lastNames = ['Brown', 'Williams', 'Campbell', 'Johnson', 'Smith', 'Grant', 'Reid', 'Clarke', 'Thompson', 'Douglas', 'Singh', 'Patel', 'Okello', 'Jean', 'Garcia', 'Nguyen', 'Khan', 'Ali', 'Lee', 'Martinez'];
+  const purposes = ['Tourism', 'Visit family', 'Business meeting', 'Conference', 'Study', 'Wedding', 'Funeral', 'Medical visit', 'Cruise stop'];
+  const stays = ['3 days', '1 week', '10 days', '2 weeks', '1 month', '2 months', '“Not sure”'];
+
+  const makeName = (i) => `${firstNames[i % firstNames.length]} ${lastNames[(i * 7) % lastNames.length]}`;
+  const choose = (arr, i) => arr[i % arr.length];
+
+  const gen = [];
+  const free = VISA_FREE_FOR_JAMAICA.filter((c) => c && c !== 'Jamaica (citizens)');
+  const req = VISA_REQUIRED_FOR_JAMAICA;
+
+  // Visa-required: missing visa (suspicious)
+  for (let i = 0; i < Math.min(50, req.length); i++) {
+    const country = req[i];
+    gen.push({
+      id: `gen_req_missing_${i}`,
+      traveler: makeName(i),
+      nationality: country,
+      purpose: choose(purposes, i),
+      stay: choose(stays, i + 3),
+      documents: 'Visa: Missing · Return ticket: unclear',
+      story: 'Mi just a come fi a likkle while.',
+      isSuspicious: true,
+      reason: `${country} generally requires an entry visa. No visa shown → secondary / deny.`,
+    });
+  }
+
+  // Visa-free: vague plans / no return ticket (suspicious) + clean admits
+  for (let i = 0; i < Math.min(80, free.length); i++) {
+    const country = free[i];
+    const vague = i % 2 === 0;
+    gen.push({
+      id: `gen_free_${i}`,
+      traveler: makeName(i + 77),
+      nationality: country,
+      purpose: vague ? 'Tourism' : choose(purposes, i + 5),
+      stay: vague ? '“Not sure”' : choose(stays, i + 2),
+      documents: vague ? 'Return ticket: No · Address: vague' : 'Return ticket: Yes · Hotel: Yes',
+      story: vague ? 'Mi just a vibes and see wah happen.' : 'Mi have hotel and mi flight back already.',
+      isSuspicious: vague,
+      reason: vague
+        ? 'Visa-free does not mean “no questions”. No return ticket + vague plan → secondary.'
+        : 'Clear itinerary and return ticket. Admit.',
+    });
+  }
+
+  // De-dupe by id and append
+  const existingIds = new Set((IMMIGRATION_SCENARIOS || []).map((s) => s?.id).filter(Boolean));
+  for (const s of gen) {
+    if (!s?.id || existingIds.has(s.id)) continue;
+    existingIds.add(s.id);
+    IMMIGRATION_SCENARIOS.push(s);
+  }
+})();
+
+// Legacy scenarios (kept for reference; not used by default UI)
+export const IMMIGRATION_SCENARIOS_LEGACY = [
+  {
+    id: 'auntie_merle',
+    traveler: 'Auntie Merle',
+    nationality: 'USA',
+    luggage: '4 Blue Barrels',
+    story: 'Just bringing likkle snacks for mi grandkids.',
+    isSuspicious: true,
+    reason: 'Commercial quantity! Nobody need four barrel fi "snacks". USA no need visa—but search dem barrel!',
+  },
+  {
+    id: 'jayden_florida',
+    traveler: 'Jayden from Florida',
+    nationality: 'USA',
+    luggage: '1 Backpack',
+    story: 'Here to shoot music video in Tivoli.',
+    isSuspicious: true,
+    reason: 'Likely no permit. And him never have no camera. Visa-free from USA—but nuh work permit.',
+  },
+  {
+    id: 'mr_brown',
+    traveler: 'Mr. Brown',
+    nationality: 'United Kingdom',
+    luggage: 'Duty Free Bag',
+    story: 'Returning Resident, too cold in England.',
+    isSuspicious: false,
+    reason: 'UK no need visa. Legit. Him even have di stamp from 1982. Walk good.',
+  },
+  {
+    id: 'sister_pearl',
+    traveler: 'Sister Pearl',
+    nationality: 'Canada',
+    luggage: '6 Suitcase + 2 Barrel',
+    story: 'Wedding dress and cake mix. Mi daughter getting married.',
+    isSuspicious: true,
+    reason: 'Eight piece luggage fi one wedding? Canada visa-free—but search dem!',
+  },
+  {
+    id: 'dr_smith',
+    traveler: 'Dr. Smith',
+    nationality: 'Germany',
+    luggage: 'Carry-On + Laptop',
+    story: 'Medical conference at UWI. Three days only.',
+    isSuspicious: false,
+    reason: 'Germany visa-free 90 days. Badge, return ticket, hotel. Walk good.',
+  },
+  {
+    id: 'uncle_tony',
+    traveler: 'Uncle Tony',
+    nationality: 'Trinidad',
+    luggage: '3 Boxes (Heavy)',
+    story: 'Tools. Mi fixing up mi sister house.',
+    isSuspicious: true,
+    reason: 'Him shaking when him say "tools". CARICOM no visa—but search dem!',
+  },
+  {
+    id: 'miss_kitty',
+    traveler: 'Miss Kitty',
+    nationality: 'Barbados',
+    luggage: '1 Handbag',
+    story: 'Just come fi di weekend. Mi man live a Ocho Rios.',
+    isSuspicious: false,
+    reason: 'CARICOM visa-free. One bag, round-trip. Nuh nutten wrong.',
+  },
+  {
+    id: 'rasta_joe',
+    traveler: 'Rasta Joe',
+    nationality: 'Ethiopia',
+    luggage: 'Backpack + Guitar Case',
+    story: 'Going to Nine Mile. Pilgrimage.',
+    isSuspicious: false,
+    reason: 'Ethiopia need visa—but him have it stamped. Guitar empty. Bless.',
+  },
+  {
+    id: 'big_man_dave',
+    traveler: 'Big Man Dave',
+    nationality: 'USA',
+    luggage: '5 Barrel + Cooler',
+    story: 'Ackee and saltfish. Dem nuh have good food foreign.',
+    isSuspicious: true,
+    reason: 'Cooler full a "ackee"? Smell like something else. Search dem!',
+  },
+  {
+    id: 'lady_rose',
+    traveler: 'Lady Rose',
+    nationality: 'United Kingdom',
+    luggage: '2 Suitcase',
+    story: 'Retired teacher. Come home fi good.',
+    isSuspicious: false,
+    reason: 'UK visa-free. Papers clean. Welcome home, Miss Rose.',
+  },
+  {
+    id: 'carlos_cuba',
+    traveler: 'Carlos',
+    nationality: 'Cuba',
+    luggage: '2 Bags',
+    story: 'Tourist. One week beach.',
+    isSuspicious: true,
+    reason: 'Cuba need visa before arrival! Him have no visa. Denied.',
+  },
+  {
+    id: 'yuki_japan',
+    traveler: 'Yuki Tanaka',
+    nationality: 'Japan',
+    luggage: 'Carry-On',
+    story: 'Honeymoon. Dunn\'s River and Blue Mountain.',
+    isSuspicious: false,
+    reason: 'Japan visa-free 30 days. Return ticket, hotel. Walk good.',
+  },
+  {
+    id: 'ahmed_egypt',
+    traveler: 'Ahmed',
+    nationality: 'Egypt',
+    luggage: '1 Suitcase',
+    story: 'Business meeting in Kingston.',
+    isSuspicious: true,
+    reason: 'Egypt need visa to enter Jamaica! No visa in passport. Denied.',
+  },
+  {
+    id: 'maria_brazil',
+    traveler: 'Maria Silva',
+    nationality: 'Brazil',
+    luggage: 'Backpack',
+    story: 'Backpacking 2 months. Hostels.',
+    isSuspicious: false,
+    reason: 'Brazil visa-free 90 days. Stamp clean. Walk good.',
+  },
+  {
+    id: 'nigerian_dan',
+    traveler: 'Daniel Okonkwo',
+    nationality: 'Nigeria',
+    luggage: '3 Suitcase',
+    story: 'Wedding. Mi cousin a Portmore.',
+    isSuspicious: true,
+    reason: 'Nigeria need visa for Jamaica! Him have visa? No. Denied.',
+  },
+  {
+    id: 'pierre_haiti',
+    traveler: 'Pierre Jean',
+    nationality: 'Haiti',
+    luggage: '2 Barrel',
+    story: 'Family. Mi mudda sick.',
+    isSuspicious: true,
+    reason: 'Haiti ordinary passport need visa. No visa. Denied.',
+  },
+  {
+    id: 'sophie_france',
+    traveler: 'Sophie Laurent',
+    nationality: 'France',
+    luggage: '1 Suitcase',
+    story: 'Volunteer at animal shelter. Two weeks.',
+    isSuspicious: false,
+    reason: 'France visa-free 30 days. Return ticket. Walk good.',
+  },
+  {
+    id: 'raj_india',
+    traveler: 'Raj Patel',
+    nationality: 'India',
+    luggage: 'Laptop Bag + Suitcase',
+    story: 'Tech conference. Montego Bay.',
+    isSuspicious: false,
+    reason: 'India no visa required for Jamaica. Badge, hotel. Walk good.',
+  },
+  {
+    id: 'keisha_barbados',
+    traveler: 'Keisha',
+    nationality: 'Barbados',
+    luggage: '4 Barrel',
+    story: 'Moving back. Mi was in Bim 10 years.',
+    isSuspicious: false,
+    reason: 'CARICOM visa-free. Returning national vibe. Welcome home.',
+  },
+  {
+    id: 'wang_china',
+    traveler: 'Wang Wei',
+    nationality: 'China',
+    luggage: 'Carry-On',
+    story: 'Tourism only. 2 weeks.',
+    isSuspicious: false,
+    reason: 'China visa-free 30 days for tourism. Round-trip. Walk good.',
+  },
+  {
+    id: 'ali_pakistan',
+    traveler: 'Ali Hassan',
+    nationality: 'Pakistan',
+    luggage: '1 Bag',
+    story: 'Visit brother in Spanish Town.',
+    isSuspicious: true,
+    reason: 'Pakistan need visa for Jamaica! No visa. Denied.',
+  },
+  {
+    id: 'olga_russia',
+    traveler: 'Olga Petrov',
+    nationality: 'Russia',
+    luggage: '2 Suitcase',
+    story: 'Cruise stop. One day only.',
+    isSuspicious: false,
+    reason: 'Russia visa-free 90 days. Cruise card. Walk good.',
+  },
+  {
+    id: 'jose_dominican',
+    traveler: 'Jose Rodriguez',
+    nationality: 'Dominican Republic',
+    luggage: 'Backpack',
+    story: 'Weekend. Friend in Negril.',
+    isSuspicious: false,
+    reason: 'Dominican Republic no visa up to 180 days (from Feb 2025). Walk good.',
+  },
+  {
+    id: 'fatima_morocco',
+    traveler: 'Fatima',
+    nationality: 'Morocco',
+    luggage: '2 Bags',
+    story: 'Holiday. Beach and culture.',
+    isSuspicious: true,
+    reason: 'Morocco need visa for Jamaica! No visa in passport. Denied.',
+  },
+  {
+    id: 'marc_canada',
+    traveler: 'Marc Tremblay',
+    nationality: 'Canada',
+    luggage: 'Golf Bag + Suitcase',
+    story: 'Golf trip. Tryall and Cinnamon Hill.',
+    isSuspicious: false,
+    reason: 'Canada visa-free. Clubs, return ticket. Walk good.',
+  },
+  {
+    id: 'lisa_australia',
+    traveler: 'Lisa Chen',
+    nationality: 'Australia',
+    luggage: 'Backpack',
+    story: 'Gap year. Caribbean leg.',
+    isSuspicious: false,
+    reason: 'Australia Commonwealth—no visa. Stamp clean. Walk good.',
+  },
+  {
+    id: 'mohammed_uae',
+    traveler: 'Mohammed Al-Rashid',
+    nationality: 'United Arab Emirates',
+    luggage: 'Designer Bags',
+    story: 'Luxury holiday. Round Hill.',
+    isSuspicious: true,
+    reason: 'UAE need visa for Jamaica! No visa. Denied.',
+  },
+  {
+    id: 'helen_ireland',
+    traveler: 'Helen O\'Brien',
+    nationality: 'Ireland',
+    luggage: '1 Suitcase',
+    story: 'Tourism. 2 weeks.',
+    isSuspicious: false,
+    reason: 'Ireland no visa required 90 days (tourism). Walk good.',
+  },
+  {
+    id: 'suspicious_barrels',
+    traveler: 'Mr. Johnson',
+    nationality: 'USA',
+    luggage: '6 Barrel (Unmarked)',
+    story: 'Donations. Church project.',
+    isSuspicious: true,
+    reason: 'Six unmarked barrel? USA visa-free—but search every one!',
+  },
+  {
+    id: 'student_korea',
+    traveler: 'Kim Min-ho',
+    nationality: 'South Korea',
+    luggage: 'Backpack + Camera',
+    story: 'Student exchange. UWI one semester.',
+    isSuspicious: false,
+    reason: 'South Korea visa-free 90 days. Acceptance letter, return ticket. Walk good.',
+  },
+  {
+    id: 'donna_usa',
+    traveler: 'Donna Williams',
+    nationality: 'USA',
+    luggage: '3 Barrel + Cooler',
+    story: 'Family reunion. Bringing jerk seasoning and rum cake.',
+    isSuspicious: true,
+    reason: 'Cooler need check. "Rum cake" might be something else. Search dem!',
+  },
+  {
+    id: 'paul_uk',
+    traveler: 'Paul Thompson',
+    nationality: 'United Kingdom',
+    luggage: '1 Suitcase',
+    story: 'Retired. Come fi di winter. Three months.',
+    isSuspicious: false,
+    reason: 'UK visa-free. Pensioner vibe. Walk good.',
+  },
+  {
+    id: 'yuki_japan_couple',
+    traveler: 'Yuki & Ken',
+    nationality: 'Japan',
+    luggage: '2 Carry-On',
+    story: 'Honeymoon. Dunn\'s River and Blue Mountain.',
+    isSuspicious: false,
+    reason: 'Japan visa-free 30 days. Return ticket. Walk good.',
+  },
+  {
+    id: 'omar_egypt',
+    traveler: 'Omar Hassan',
+    nationality: 'Egypt',
+    luggage: '2 Bags',
+    story: 'Archaeology conference. UWI Mona.',
+    isSuspicious: true,
+    reason: 'Egypt need visa for Jamaica! No visa. Denied.',
+  },
+  {
+    id: 'maria_mexico',
+    traveler: 'Maria Garcia',
+    nationality: 'Mexico',
+    luggage: 'Backpack',
+    story: 'Backpacking 6 weeks. Hostels.',
+    isSuspicious: false,
+    reason: 'Mexico visa-free 90 days. Stamp clean. Walk good.',
+  },
+  {
+    id: 'tony_trinidad',
+    traveler: 'Tony from Trinidad',
+    nationality: 'Trinidad & Tobago',
+    luggage: '5 Barrel',
+    story: 'Carnival season. Bringing costume and rum.',
+    isSuspicious: false,
+    reason: 'CARICOM visa-free. Carnival is culture. Walk good.',
+  },
+  {
+    id: 'chen_china_biz',
+    traveler: 'Chen Wei',
+    nationality: 'China',
+    luggage: 'Briefcase + Suitcase',
+    story: 'Business. Meeting investors. One week.',
+    isSuspicious: false,
+    reason: 'China visa-free 30 days. Business papers. Walk good.',
+  },
+  {
+    id: 'kevin_usa_barrel',
+    traveler: 'Kevin from Brooklyn',
+    nationality: 'USA',
+    luggage: '7 Barrel (All "Food")',
+    story: 'Family. Dem nuh have good food in Jamaica.',
+    isSuspicious: true,
+    reason: 'Seven barrel? USA visa-free—but search every one!',
+  },
+  {
+    id: 'sarah_ireland',
+    traveler: 'Sarah O\'Connor',
+    nationality: 'Ireland',
+    luggage: 'Backpack',
+    story: 'Gap year. Volunteering at school in Mandeville.',
+    isSuspicious: false,
+    reason: 'Ireland visa-free 90 days. Return ticket. Walk good.',
+  },
+  {
+    id: 'mohammed_saudi',
+    traveler: 'Mohammed Al-Saud',
+    nationality: 'Saudi Arabia',
+    luggage: '2 Suitcase',
+    story: 'Business. Meeting at bank.',
+    isSuspicious: true,
+    reason: 'Saudi Arabia need visa for Jamaica! No visa. Denied.',
+  },
+  {
+    id: 'anna_poland',
+    traveler: 'Anna Kowalski',
+    nationality: 'Poland',
+    luggage: '1 Suitcase',
+    story: 'Tourism. 2 weeks.',
+    isSuspicious: false,
+    reason: 'Poland EU—visa-free 90 days. Walk good.',
+  },
+  {
+    id: 'juan_venezuela',
+    traveler: 'Juan Perez',
+    nationality: 'Venezuela',
+    luggage: '3 Bags',
+    story: 'Visit sister. She live a MoBay.',
+    isSuspicious: true,
+    reason: 'Venezuela need visa for Jamaica! No visa. Denied.',
+  },
+  {
+    id: 'emma_new_zealand',
+    traveler: 'Emma Wilson',
+    nationality: 'New Zealand',
+    luggage: 'Backpack + Surfboard',
+    story: 'Surf trip. Boston Bay and Bull Bay.',
+    isSuspicious: false,
+    reason: 'New Zealand Commonwealth—no visa. Walk good.',
+  },
+  {
+    id: 'dmitri_russia',
+    traveler: 'Dmitri Volkov',
+    nationality: 'Russia',
+    luggage: '1 Bag',
+    story: 'One week beach. Cruise stop.',
+    isSuspicious: false,
+    reason: 'Russia visa-free 90 days. Cruise card. Walk good.',
+  },
+  {
+    id: 'aisha_kenya',
+    traveler: 'Aisha Okello',
+    nationality: 'Kenya',
+    luggage: '2 Suitcase',
+    story: 'Conference. UWI Mona. One week.',
+    isSuspicious: false,
+    reason: 'Kenya visa-free for Jamaica. Badge, return ticket. Walk good.',
+  },
+  {
+    id: 'mr_singh_india',
+    traveler: 'Raj Singh',
+    nationality: 'India',
+    luggage: '4 Barrel',
+    story: 'Wedding. Mi daughter marrying Jamaican.',
+    isSuspicious: true,
+    reason: 'India no visa—but four barrel? Search dem!',
+  },
+  {
+    id: 'uncle_barrel_king',
+    traveler: 'Uncle Barrel King from Miami',
+    nationality: 'USA',
+    luggage: '12 Barrel (All "Clothes")',
+    story: 'Mi family big. Dem nuh have clothes in Jamaica.',
+    isSuspicious: true,
+    reason: 'Twelve barrel a "clothes"? Him open one—is rice! Search every last one!',
+  },
+  {
+    id: 'influencer_jen',
+    traveler: 'Jen the Influencer',
+    nationality: 'Canada',
+    luggage: '10 Suitcase + Ring Light',
+    story: 'Content creator. Doing "Real Jamaica" series.',
+    isSuspicious: false,
+    reason: 'Canada visa-free. Ten suitcase is just outfits. Ring light nuh hurt nobody. Walk good.',
+  },
+  {
+    id: 'pastor_barrel',
+    traveler: 'Pastor Blessings',
+    nationality: 'Nigeria',
+    luggage: '8 Barrel (Stickers: "Ministry")',
+    story: 'Evangelical tour. Revival in every parish.',
+    isSuspicious: true,
+    reason: 'Nigeria need visa! No visa. And eight barrel fi "ministry"? Denied.',
+  },
+  {
+    id: 'chef_italy',
+    traveler: 'Chef Giuseppe',
+    nationality: 'Italy',
+    luggage: 'Cooler + 3 Bags (Smell Strong)',
+    story: 'Jerk vs Italian. Food fusion documentary.',
+    isSuspicious: false,
+    reason: 'Italy EU visa-free. Cooler is cheese and salami. Smell legit. Walk good.',
+  },
+  {
+    id: 'dreadlock_barrel',
+    traveler: 'Ras Imani',
+    nationality: 'Ethiopia',
+    luggage: '1 Backpack + 1 Barrel (Heavy)',
+    story: 'Pilgrimage. Bringing natural herbs for ceremony.',
+    isSuspicious: true,
+    reason: 'Ethiopia need visa—him have it. But "natural herbs" in one heavy barrel? Search it!',
+  },
+  {
+    id: 'bridezilla_usa',
+    traveler: 'Bridezilla Becky',
+    nationality: 'USA',
+    luggage: '15 Suitcase + Wedding Dress Box',
+    story: 'Destination wedding. Ocho Rios. 200 guests.',
+    isSuspicious: false,
+    reason: 'USA visa-free. Bridezilla carry whole closet. Nuh nutten wrong. Walk good.',
+  },
+  {
+    id: 'yoga_retreat',
+    traveler: 'Namaste Nancy',
+    nationality: 'Australia',
+    luggage: 'Backpack + Yoga Mat + Incense',
+    story: 'Wellness retreat. Find myself in Negril.',
+    isSuspicious: false,
+    reason: 'Australia no visa. Incense smell like lavender. Walk good.',
+  },
+  {
+    id: 'crypto_bro',
+    traveler: 'Crypto Kevin',
+    nationality: 'USA',
+    luggage: 'Laptop + 2 Phones + "Cold Wallet"',
+    story: 'Digital nomad. Jamaica = low tax, good WiFi.',
+    isSuspicious: false,
+    reason: 'USA visa-free. Cold wallet is USB, nuh gun. Walk good.',
+  },
+  {
+    id: 'auntie_merle_again',
+    traveler: 'Auntie Merle (Again?)',
+    nationality: 'USA',
+    luggage: '4 Barrel (Same as last week)',
+    story: 'Forgot one barrel. Come back fi it.',
+    isSuspicious: true,
+    reason: 'Same Auntie Merle, same four barrel, "forgot one"? She never clear last week! Search dem!',
+  },
+  {
+    id: 'scientist_antarctic',
+    traveler: 'Dr. Frost',
+    nationality: 'Norway',
+    luggage: 'Equipment Cases + Parka',
+    story: 'Climate research. Blue Mountain temperature study.',
+    isSuspicious: false,
+    reason: 'Norway visa-free. Equipment look like sensors. Walk good.',
+  },
+  {
+    id: 'comedian_uk',
+    traveler: 'Trevor from Leeds',
+    nationality: 'United Kingdom',
+    luggage: '1 Bag + Microphone',
+    story: 'Stand-up tour. "Jamaica vs England" show.',
+    isSuspicious: false,
+    reason: 'UK visa-free. Mic nuh weapon. Walk good.',
+  },
+  {
+    id: 'dance_crew',
+    traveler: 'Dance Fusion Crew',
+    nationality: 'South Korea',
+    luggage: '6 Bags (Costumes + Speakers)',
+    story: 'Dance competition. Kingston. One week.',
+    isSuspicious: false,
+    reason: 'South Korea visa-free 90 days. Costumes and speakers. Walk good.',
+  },
+  {
+    id: 'grandma_barrel',
+    traveler: 'Grandma Ivy',
+    nationality: 'United Kingdom',
+    luggage: '2 Barrel + Walker',
+    story: 'Come see great-grandpickney. Bring Christmas pudding.',
+    isSuspicious: false,
+    reason: 'UK visa-free. Grandma nuh smuggle. Pudding in barrel. Walk good.',
+  },
+  {
+    id: 'fitness_influencer',
+    traveler: 'Fit Tyrone',
+    nationality: 'USA',
+    luggage: 'Gym Bag + Protein Powder (Unmarked)',
+    story: 'Beach body shoot. Montego Bay.',
+    isSuspicious: true,
+    reason: 'Unmarked white powder? USA visa-free—but test dat "protein"! Search!',
+  },
+  {
+    id: 'dj_equipment',
+    traveler: 'DJ Spin Master',
+    nationality: 'Trinidad',
+    luggage: 'Flight Case + 4 Speakers',
+    story: 'Carnival after-party. Portmore.',
+    isSuspicious: false,
+    reason: 'CARICOM visa-free. Flight case full a decks. Walk good.',
+  },
+  {
+    id: 'pharaoh_egypt',
+    traveler: 'Prince Ramses (He say)',
+    nationality: 'Egypt',
+    luggage: 'Golden Casket + 2 Bags',
+    story: 'Returning artifact to Jamaica. Long story.',
+    isSuspicious: true,
+    reason: 'Egypt need visa! No visa. And "artifact" in casket? Denied.',
+  },
+  {
+    id: 'minimalist_finn',
+    traveler: 'Erik the Finn',
+    nationality: 'Finland',
+    luggage: 'Small Backpack (That\'s it)',
+    story: 'Two weeks. One bag. No plan.',
+    isSuspicious: false,
+    reason: 'Finland EU visa-free. Minimalist vibe. Walk good.',
+  },
+  {
+    id: 'suspicious_cooler',
+    traveler: 'Mr. Cooler Man',
+    nationality: 'USA',
+    luggage: '3 Cooler (No ice. Smell fishy)',
+    story: 'Ackee. Fresh from tree.',
+    isSuspicious: true,
+    reason: 'Ackee in cooler with no ice? Smell nuh ackee. Search dem cooler!',
+  },
+  {
+    id: 'reggae_band',
+    traveler: 'German Reggae Band',
+    nationality: 'Germany',
+    luggage: 'Instruments + Dread Wigs',
+    story: 'Pilgrimage. Record album at Tuff Gong.',
+    isSuspicious: false,
+    reason: 'Germany visa-free. Wigs are costume. Walk good.',
+  },
+];
