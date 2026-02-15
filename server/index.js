@@ -24,15 +24,33 @@ if (!STRIPE_KEY) {
   console.warn('Warning: STRIPE_SECRET_KEY not set. Server will fail when creating sessions.');
 }
 const stripe = require('stripe')(STRIPE_KEY || '');
-const sendgridKey = process.env.SENDGRID_API_KEY || null;
-let sendgrid = null;
-if (sendgridKey) {
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || null;
+
+// Helper to send email via SendGrid REST API (no @sendgrid/mail dependency)
+async function sendEmailViaSendGrid(to, from, subject, text, html) {
+  if (!SENDGRID_API_KEY) return false;
   try {
-    sendgrid = require('@sendgrid/mail');
-    sendgrid.setApiKey(sendgridKey);
+    const body = {
+      personalizations: [{ to: [{ email: to }] }],
+      from: { email: from },
+      subject,
+      content: [
+        { type: 'text/plain', value: text || '' },
+        { type: 'text/html', value: html || '' },
+      ],
+    };
+    const res = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${SENDGRID_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    return res.ok;
   } catch (e) {
-    console.warn('SendGrid init failed:', e);
-    sendgrid = null;
+    console.warn('sendEmailViaSendGrid error', e);
+    return false;
   }
 }
 
@@ -118,21 +136,15 @@ app.post('/webhook', bodyParser.raw({ type: 'application/json' }), (req, res) =>
         };
         saveSubs(subs);
       } catch (e) { console.warn('save subs error', e); }
-      // Send code by email if SendGrid is configured and we have an email
-      if (sendgrid && session.customer_email) {
+      // Send code by email if SendGrid API key configured and we have an email
+      if (SENDGRID_API_KEY && session.customer_email) {
         try {
-          const msg = {
-            to: session.customer_email,
-            from: process.env.SENDGRID_FROM || 'no-reply@orion.example',
-            subject: 'Your Orion Premium License Code',
-            text: `Thank you for your purchase. Your license code is: ${code}\n\nVisit the app and enter this code under Settings → Redeem to unlock Premium.`,
-            html: `<p>Thank you for your purchase.</p><p>Your license code is: <strong style="font-size:18px">${code}</strong></p><p>Open the Orion app and go to <strong>Settings → Redeem</strong> to unlock Premium features.</p><p>If the app was open during purchase, press <em>Buy on Web</em> again and it will auto-unlock.</p>`,
-          };
-          sendgrid.send(msg).then(() => {
-            console.log('License code emailed to', session.customer_email);
-          }).catch((err) => {
-            console.warn('SendGrid send error', err);
-          });
+          const from = process.env.SENDGRID_FROM || 'no-reply@orion.example';
+          const text = `Thank you for your purchase. Your license code is: ${code}\n\nVisit the app and enter this code under Settings → Redeem to unlock Premium.`;
+          const html = `<p>Thank you for your purchase.</p><p>Your license code is: <strong style="font-size:18px">${code}</strong></p><p>Open the Orion app and go to <strong>Settings → Redeem</strong> to unlock Premium features.</p><p>If the app was open during purchase, press <em>Buy on Web</em> again and it will auto-unlock.</p>`;
+          const ok = await sendEmailViaSendGrid(session.customer_email, from, 'Your Orion Premium License Code', text, html);
+          if (ok) console.log('License code emailed to', session.customer_email);
+          else console.warn('SendGrid send failed for', session.customer_email);
         } catch (e) {
           console.warn('SendGrid error', e);
         }
@@ -237,17 +249,15 @@ app.post('/gumroad-webhook', bodyParser.urlencoded({ extended: true }), (req, re
     };
     saveLicenses(licenses);
     console.log('Gumroad generated license', code, 'for', email);
-    // send email if configured
-    if (sendgrid && email) {
+    // send email if SendGrid API key configured
+    if (SENDGRID_API_KEY && email) {
       try {
-        const msg = {
-          to: email,
-          from: process.env.SENDGRID_FROM || 'no-reply@orion.example',
-          subject: 'Your Orion Premium License Code',
-          text: `Thank you for your purchase. Your license code is: ${code}\n\nOpen the Orion app and go to Settings → Redeem to unlock Premium features.`,
-          html: `<p>Thank you for your purchase.</p><p>Your license code is: <strong style="font-size:18px">${code}</strong></p><p>Open the Orion app and go to <strong>Settings → Redeem</strong> to unlock Premium features.</p>`,
-        };
-        sendgrid.send(msg).then(() => console.log('Gumroad license emailed to', email)).catch((err) => console.warn('SendGrid send error', err));
+        const from = process.env.SENDGRID_FROM || 'no-reply@orion.example';
+        const text = `Thank you for your purchase. Your license code is: ${code}\n\nOpen the Orion app and go to Settings → Redeem to unlock Premium features.`;
+        const html = `<p>Thank you for your purchase.</p><p>Your license code is: <strong style="font-size:18px">${code}</strong></p><p>Open the Orion app and go to <strong>Settings → Redeem</strong> to unlock Premium features.</p>`;
+        const ok = await sendEmailViaSendGrid(email, from, 'Your Orion Premium License Code', text, html);
+        if (ok) console.log('Gumroad license emailed to', email);
+        else console.warn('SendGrid send failed for', email);
       } catch (e) { console.warn('SendGrid send error', e); }
     }
   } catch (e) {
